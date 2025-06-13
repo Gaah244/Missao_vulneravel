@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload de Arquivo - Missão CTF</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>📤 Upload de Arquivo</h1>
+  <p>Envie seu arquivo para análise. (👀 Cuidado com o que sobe...)</p>
+
+  <form method="POST" enctype="multipart/form-data">
+    <input type="file" name="arquivo" required><br><br>
+    <input type="submit" value="Enviar">
+  </form>
+
+  <br>
+  <a href="/">⬅ Voltar ao início</a>
+
+</body>
+</html>

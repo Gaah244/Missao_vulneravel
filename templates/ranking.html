@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ranking - Missão CTF</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>🏆 Ranking dos Agentes</h1>
+
+  {% if ranking %}
+    <ol>
+      {% for nome, total in ranking %}
+        <li><strong>{{ nome }}</strong> - {{ total }} flags registradas</li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <p>Nenhum agente registrou uma FLAG ainda.</p>
+  {% endif %}
+
+  <a href="/">⬅ Voltar ao início</a>
+
+</body>
+</html>

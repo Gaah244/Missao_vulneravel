@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Login do Sistema Secreto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #00ff99;
+    }
+
+    form {
+      background-color: #1c1c1c;
+      padding: 25px;
+      display: inline-block;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 150, 0.3);
+      margin-top: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 10px;
+      margin: 10px 0;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+      background-color: #333;
+      color: white;
+    }
+
+    input[type="submit"] {
+      background-color: #00ff99;
+      color: #000;
+      padding: 10px 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #00cc7a;
+    }
+
+    a {
+      display: block;
+      margin-top: 30px;
+      color: #00ff99;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔐 Login do Sistema Secreto</h1>
+
+  <form method="post">
+    <div>
+      <input type="text" name="usuario" placeholder="Usuário" required><br>
+      <input type="password" name="senha" placeholder="Senha" required><br>
+      <input type="submit" value="Entrar">
+    </div>
+  </form>
+
+  <a href="/">⬅ Voltar ao Início</a>
+
+</body>
+</html>
