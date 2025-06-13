@@ -27,7 +27,7 @@ def init_db():
     # Inserir admin padrão se não existir
     cursor.execute("SELECT * FROM usuarios WHERE usuario = 'admin'")
     if not cursor.fetchone():
-        cursor.execute("INSERT INTO usuarios (usuario, senha) VALUES ('admin', '1234')")
+        cursor.execute("INSERT INTO usuarios (usuario, senha) VALUES ('zetsu', 'theadmins')")
     conn.commit()
     conn.close()
 
