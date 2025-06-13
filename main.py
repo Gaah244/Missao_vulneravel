@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, render_template, redirect, url_for, render_template_string
 import os
 import sqlite3
 import subprocess
@@ -33,9 +33,15 @@ def init_db():
 
 init_db()
 
+# Página principal SEM usar cache do Flask
 @app.route('/')
 def home():
-    return render_template('index.html')
+    try:
+        with open("templates/index.html", "r", encoding="utf-8") as f:
+            html = f.read()
+        return render_template_string(html)
+    except Exception as e:
+        return f"Erro ao carregar index.html: {str(e)}"
 
 @app.route('/ver')
 def ver_arquivo():
@@ -51,11 +57,10 @@ def ver_arquivo():
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
-        file = request.files.get('arquivo')  # mudado para 'arquivo' para bater com o HTML
+        file = request.files.get('arquivo')  # nome deve bater com o HTML
         if file:
-            caminho = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            # Garantir que a pasta existe
             os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+            caminho = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(caminho)
             return f"Arquivo <b>{file.filename}</b> enviado com sucesso para <b>{caminho}</b><br>" \
                    f"<a href='/executar?script={file.filename}'>Executar</a>"
@@ -107,7 +112,6 @@ def login():
         usuario = request.form['usuario']
         senha = request.form['senha']
 
-        # Atenção: consulta vulnerável propositalmente
         conn = sqlite3.connect('recrutados.db')
         cursor = conn.cursor()
         query = f"SELECT * FROM usuarios WHERE usuario = '{usuario}' AND senha = '{senha}'"
@@ -136,3 +140,4 @@ def ranking():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)
+
